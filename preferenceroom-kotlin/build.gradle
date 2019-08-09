@@ -1,0 +1,29 @@
+apply plugin: 'kotlin'
+apply from: '../dependencies.gradle'
+apply from: '../metadata.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publish {
+    artifactId = 'preferenceroom-kotlin'
+    userOrg = metadata.userOrg
+    groupId = metadata.groupId
+    publishVersion = metadata.publishVersion
+    desc = metadata.desc
+    website = metadata.website
+    issueTracker = metadata.issueTracker
+    repository = metadata.repository
+    licences = metadata.licences
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    api "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    api "com.google.android.material:material:$versions.googleMaterial"
+    api "androidx.annotation:annotation:$versions.androidxAnnotation"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+}

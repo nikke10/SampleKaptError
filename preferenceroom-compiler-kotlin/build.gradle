@@ -1,0 +1,40 @@
+apply plugin: 'kotlin'
+apply from: '../dependencies.gradle'
+apply from: '../metadata.gradle'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publish {
+    artifactId = 'preferenceroom-processor-kotlin'
+    userOrg = metadata.userOrg
+    groupId = metadata.groupId
+    publishVersion = metadata.publishVersion
+    desc = metadata.desc
+    website = metadata.website
+    issueTracker = metadata.issueTracker
+    repository = metadata.repository
+    licences = metadata.licences
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+dependencies {
+    api "androidx.appcompat:appcompat:$versions.androidxAppcompat"
+    api "com.google.android.material:material:$versions.googleMaterial"
+    api "androidx.annotation:annotation:$versions.androidxAnnotation"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+
+    implementation project(":preferenceroom-kotlin")
+    implementation "com.google.auto.service:auto-service:$versions.autoService"
+    kapt "com.google.auto.service:auto-service:$versions.autoService"
+    implementation "com.squareup:javapoet:$versions.javapoet"
+    implementation "com.squareup:kotlinpoet:$versions.kotlinpoet"
+
+    implementation 'com.google.dagger:dagger-android:2.24'
+    implementation 'com.google.dagger:dagger-android-support:2.24' // if you use the support libraries
+    kapt 'com.google.dagger:dagger-compiler:2.24'
+}
