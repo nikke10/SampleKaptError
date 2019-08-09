@@ -52,5 +52,3 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.24' // if you use the support libraries
     kapt 'com.google.dagger:dagger-compiler:2.24'
 }
-
-apply from: '../spotless.gradle'
